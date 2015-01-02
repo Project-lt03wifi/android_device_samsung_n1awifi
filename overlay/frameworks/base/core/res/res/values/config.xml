@@ -230,6 +230,9 @@
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
     <integer name="config_deviceHardwareKeys">7</integer>
+    
+     <!-- Hardware keys enable/disable -->
+    <bool name="config_hwKeysPref">true</bool>
 
     <bool name="config_enableWifiDisplay">true</bool>
 
