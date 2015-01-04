@@ -43,7 +43,6 @@ TARGET_OTA_ASSERT_DEVICE := lt03wifi,lt03wifiue
 BOARD_NEEDS_MEMORYHEAPION := true
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 
 # Kernel
 BOARD_KERNEL_BASE := 0x10000000
@@ -80,9 +79,6 @@ BOARD_HARDWARE_CLASS += device/samsung/lt03wifi/cmhw
 
 # Init
 TARGET_NR_SVC_SUPP_GIDS := 20
-
-# Media
-COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
 
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true
@@ -135,15 +131,11 @@ BOARD_SEPOLICY_UNION += \
     drmserver.te \
     file.te \
     gpsd.te \
-    init.te \
     mediaserver.te \
     servicemanager.te \
     system_app.te \
     system_server.te \
     wpa.te
-
-# SurfaceFlinger
-BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # Webkit
 ENABLE_WEBGL := true
