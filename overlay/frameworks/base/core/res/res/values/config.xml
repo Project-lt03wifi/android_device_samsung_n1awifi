@@ -196,7 +196,7 @@ of the following keys present:
 64 - Volume rocker
 For example, a device with Home, Back and Menu keys would set this
 config to 7. -->
-<integer name="config_deviceHardwareKeys">83</integer>
+<integer name="config_deviceHardwareKeys">71</integer>
 <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
 This integer should equal the sum of the corresponding value for each
 of the following keys present:
@@ -209,7 +209,7 @@ of the following keys present:
 64 - Volume rocker
 For example, a device with Home, Back and Menu keys would set this
 config to 7. -->
-<integer name="config_deviceHardwareWakeKeys">65</integer>
+<integer name="config_deviceHardwareWakeKeys">71</integer>
 <bool name="config_enableWifiDisplay">true</bool>
 <!-- True if the Irda service should be started at system start. This currently only
 supports Samsung Galaxy S4. -->
