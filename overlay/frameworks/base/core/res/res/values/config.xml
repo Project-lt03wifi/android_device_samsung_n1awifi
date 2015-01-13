@@ -190,9 +190,6 @@ of the following keys present:
 1 - Home
 2 - Back
 4 - Menu
-8 - Assistant (search)
-16 - App switch
-32 - Camera
 64 - Volume rocker
 For example, a device with Home, Back and Menu keys would set this
 config to 7. -->
@@ -201,15 +198,10 @@ config to 7. -->
 This integer should equal the sum of the corresponding value for each
 of the following keys present:
 1 - Home
-2 - Back
-4 - Menu
-8 - Assistant (search)
-16 - App switch
-32 - Camera
 64 - Volume rocker
 For example, a device with Home, Back and Menu keys would set this
 config to 7. -->
-<integer name="config_deviceHardwareWakeKeys">71</integer>
+<integer name="config_deviceHardwareWakeKeys">65</integer>
 <bool name="config_enableWifiDisplay">true</bool>
 <!-- True if the Irda service should be started at system start. This currently only
 supports Samsung Galaxy S4. -->
