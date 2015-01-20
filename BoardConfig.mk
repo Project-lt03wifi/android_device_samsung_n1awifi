@@ -102,7 +102,8 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 #BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2524971008
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 25124864
+# 12863930368 - 16384 <encryption footer>
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 12863913984
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # PowerHAL
@@ -132,7 +133,9 @@ BOARD_SEPOLICY_UNION += \
     drmserver.te \
     file.te \
     gpsd.te \
+    macloader.te \
     mediaserver.te \
+    service_contexts \
     servicemanager.te \
     system_app.te \
     system_server.te \
