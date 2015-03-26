@@ -199,7 +199,7 @@ $(call inherit-product-if-exists, vendor/samsung/lt03wifi/lt03wifi-vendor.mk)
 
 #Temasek OTA dependencies
 PRODUCT_PROPERTY_OVERRIDES := \
-    ro.ota.romname=temasek-flounder \
+    ro.ota.romname=temasek-lt03wifi \
     ro.ota.version=$(shell date +%F | sed s@-@@g) \
     ro.ota.manifest=https://romhut.com/roms/temasek-unofficial-cyanogenmod-note-10-1-2014/ota.xml
 
