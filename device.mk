@@ -39,17 +39,21 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Boot animation
+TARGET_BOOTANIMATION_HALF_RES := true
 TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1600
+
+# Shim
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
 
 # Camera
 PRODUCT_PACKAGES += \
     camera.universal5420 \
     libhwjpeg
 
-# Camera permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera2.portability.force_api=1
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -59,7 +63,8 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.universal5420
+    gps.universal5420 \
+	libdmitry
 
 # HW composer
 PRODUCT_PACKAGES += \
@@ -83,6 +88,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.universal5420
 
+
+# libstlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Media profile
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
@@ -90,10 +100,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
-
-# Misc
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
 
 # MobiCore setup
 PRODUCT_PACKAGES += \
@@ -104,17 +110,13 @@ PRODUCT_PACKAGES += \
     mcDriverDaemon
 
 # Network tools
-
 PRODUCT_PACKAGES += \
     libpcap \
     tcpdump
 
 # OMX
 PRODUCT_PACKAGES += \
-    libcsc \
-    libExynosOMX_Core \
-    libOMX.Exynos.MP3.Decoder \
-    libstagefrighthw \
+    libcsc
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -164,10 +166,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.universal5420
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -181,17 +179,24 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant
 
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.io.scheduler=bfq
+
+# CPU producer to CPU consumer not supported
+PRODUCT_PROPERTY_OVERRIDES += \
+ ro.bq.gpu_to_cpu_unsupported=1
 
 PRODUCT_PACKAGES += \
     libnetcmdiface \
     macloader
 
-# for off charging mode
-PRODUCT_PACKAGES += \
-    charger_res_images
-
 # call dalvik heap config
-$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+
+# call Samsung LSI board support package
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5420/exynos5420.mk)
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/samsung/n1awifi/n1awifi-vendor.mk)

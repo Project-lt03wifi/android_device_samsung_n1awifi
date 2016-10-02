@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ LOCAL_PATH := device/samsung/n1awifi
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
-TARGET_SLSI_VARIANT := insignal
+TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5420
 
 # Architecture
@@ -29,11 +29,6 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a15
-
-# Bionic Tuning
-ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
-BOARD_MEMCPY_ALIGNMENT := 64
-BOARD_MEMCPY_ALIGN_BOUND := 32768
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -45,10 +40,9 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 TARGET_OTA_ASSERT_DEVICE := lt03wifi,lt03wifiue
 
 # Camera
+BOARD_CAMERA_SNUMINTS := 20
 BOARD_NEEDS_MEMORYHEAPION := true
-COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
+COMMON_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
 
 # Kernel
 BOARD_KERNEL_BASE := 0x10000000
@@ -56,9 +50,12 @@ BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CONFIG := cyanogenmod_deathly_n1awifi_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
 
-# Charger/Healthd
+# Charging mode
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_BATTERY_DEVICE_NAME := battery
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := universal5420
@@ -67,27 +64,22 @@ TARGET_NO_RADIOIMAGE := true
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
 
 # Graphics
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-OVERRIDE_RS_DRIVER := libRSDriverArm.so
 USE_OPENGL_RENDERER := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
 # HDMI
 BOARD_USES_GSC_VIDEO := true
-BOARD_USES_CEC := true
 
 # GSC
 BOARD_USES_ONLY_GSC0_GSC1 := true
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
 
 # SCALER
 BOARD_USES_SCALER := true
@@ -130,41 +122,18 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_POWERHAL_VARIANT := samsung
 
 # Recovery
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5420
-TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
 BOARD_RECOVERY_SWIPE := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
     device/samsung/n1awifi/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    device.te \
-    domain.te \
-    drmserver.te \
-    file.te \
-    gpsd.te \
-    macloader.te \
-    mediaserver.te \
-    service_contexts \
-    servicemanager.te \
-    system_app.te \
-    system_server.te \
-    vold.te \
-    wpa.te
-
 # Webkit
 ENABLE_WEBGL := true
 
 # WFD
-BOARD_USES_WFD_SERVICE := true
 BOARD_USES_WFD := true
 
 # Wifi
@@ -178,9 +147,6 @@ BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
-
-# External apps on SD
-TARGET_EXTERNAL_APPS := sdcard1
 
 # inherit from the proprietary version
 -include vendor/samsung/n1awifi/BoardConfigVendor.mk
