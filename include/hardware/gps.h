@@ -453,20 +453,16 @@ typedef struct {
     /** set to sizeof(GpsSvInfo) */
     size_t          size;
     /** Pseudo-random number for the SV. */
-
     int     prn;
-
     /** Signal to noise ratio. */
     float   snr;
-
     /** Elevation of SV in degrees. */
     float   elevation;
-
     /** Azimuth of SV in degrees. */
     float   azimuth;
 
+    /** Needed by vendor blob */
     int used;
-
 } GpsSvInfo;
 
 /** Represents SV status. */
@@ -495,7 +491,6 @@ typedef struct {
      * were used for computing the most recent position fix.
      */
     uint32_t    used_in_fix_mask;
-
 } GpsSvStatus;
 
 
@@ -506,9 +501,6 @@ typedef struct {
     uint16_t mcc;
     uint16_t mnc;
     uint16_t lac;
-#ifdef AGPS_USE_PSC
-    uint16_t psc;
-#endif
     uint32_t cid;
 } AGpsRefLocationCellID;
 
