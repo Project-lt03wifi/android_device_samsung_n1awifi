@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
-# Inherit from lt03wifi device
-$(call inherit-product, device/samsung/lt03wifi/device.mk)
+# Inherit from n1awifi device
+$(call inherit-product, device/samsung/n1awifi/device.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_lt03wifi
-PRODUCT_DEVICE := lt03wifi
+PRODUCT_NAME := full_n1awifi
+PRODUCT_DEVICE := n1awifi
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := SM-P600

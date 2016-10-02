@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/lt03wifi
+LOCAL_PATH := device/samsung/n1awifi
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 PRODUCT_CHARACTERISTICS := tablet
-DEVICE_PACKAGE_OVERLAYS += device/samsung/lt03wifi/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/n1awifi/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
@@ -194,10 +194,4 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 # call the proprietary setup
-$(call inherit-product-if-exists, vendor/samsung/lt03wifi/lt03wifi-vendor.mk)
-
-#Temasek OTA dependencies
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ota.romname=Temasek-lt03wifi \
-    ro.ota.version=$(shell date +%F | sed s@-@@g) \
-    ro.ota.manifest=https://romhut.com/roms/temasek-lt03wifi/ota.xml
+$(call inherit-product-if-exists, vendor/samsung/n1awifi/n1awifi-vendor.mk)

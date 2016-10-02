@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/lt03wifi
+LOCAL_PATH := device/samsung/n1awifi
 
 # Platform
 BOARD_VENDOR := samsung
@@ -53,8 +53,8 @@ COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 # Kernel
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_CONFIG := cyanogenmod_lt03wifi_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/lt03wifi
+TARGET_KERNEL_CONFIG := cyanogenmod_deathly_n1awifi_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos5420
 
 # Charger/Healthd
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -95,11 +95,8 @@ BOARD_USES_SCALER := true
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-# Hardware
-BOARD_HARDWARE_CLASS += device/samsung/lt03wifi/cmhw
-
-# Init
-TARGET_NR_SVC_SUPP_GIDS := 20
+BOARD_HARDWARE_CLASS += device/samsung/n1awifi/cmhw
+BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true
@@ -145,7 +142,7 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/lt03wifi/sepolicy
+    device/samsung/n1awifi/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
@@ -186,4 +183,4 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 TARGET_EXTERNAL_APPS := sdcard1
 
 # inherit from the proprietary version
--include vendor/samsung/lt03wifi/BoardConfigVendor.mk
+-include vendor/samsung/n1awifi/BoardConfigVendor.mk
